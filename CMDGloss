@@ -1,0 +1,713 @@
+@ECHO OFF
+REM Setup the Variables to allow recall of specific commands
+REM This is a more in-depth list of Batch Script Commands versus the default in CMD HELP.
+REM This program works on Windows 10 Home, Version 21H1 as of Monday November 1st, 2021.
+TITLE CMDGloss - Command Prompt Glossary Ver. 3.0.2. 
+ECHO CMDGloss - Command Prompt Glossary Ver. 3.0.2. 
+ECHO. 
+
+
+
+:parse
+	REM This is where the program analyzes if there are any parameters to run. 
+    if "%~1"=="" goto :default
+
+    if /i "%~1"=="/?"         call :usage "%~2" & goto :end
+    if /i "%~1"=="-?"         call :usage "%~2" & goto :end
+    if /i "%~1"=="--help"     call :usage "%~2" & goto :end
+	
+	if /i "%~1"=="/a"         goto :A
+	if /i "%~1"=="-a"         goto :A
+	
+	if /i "%~1"=="/b"         goto :B
+	if /i "%~1"=="-b"         goto :B
+	
+	if /i "%~1"=="/c"         goto :C
+	if /i "%~1"=="-c"         goto :C
+	
+	if /i "%~1"=="/d"         goto :D 
+	if /i "%~1"=="-d"         goto :D 
+	
+	if /i "%~1"=="/e"         goto :E
+	if /i "%~1"=="-e"         goto :E 
+	
+	if /i "%~1"=="/f"         goto :F
+	if /i "%~1"=="-f"         goto :F
+	
+	if /i "%~1"=="/g"         goto :G
+	if /i "%~1"=="-g"         goto :G
+	
+	if /i "%~1"=="/h"         goto :H
+	if /i "%~1"=="-h"         goto :H 
+	
+	if /i "%~1"=="/i"         goto :I
+	if /i "%~1"=="-i"         goto :I 
+
+	if /i "%~1"=="/j"         goto :J
+	if /i "%~1"=="-j"         goto :J 	
+	
+	if /i "%~1"=="/k"         goto :K
+	if /i "%~1"=="-k"         goto :K  
+	
+	if /i "%~1"=="/l"         goto :L
+	if /i "%~1"=="-l"         goto :L
+
+	if /i "%~1"=="/m"         goto :M
+	if /i "%~1"=="-m"         goto :M	
+	
+	if /i "%~1"=="/n"         goto :N
+	if /i "%~1"=="-n"         goto :N 
+
+	if /i "%~1"=="/o"         goto :O
+	if /i "%~1"=="-o"         goto :O	
+	
+	if /i "%~1"=="/p"         goto :P
+	if /i "%~1"=="-p"         goto :P 
+	
+	if /i "%~1"=="/q"         goto :Q
+	if /i "%~1"=="-q"         goto :Q 
+	
+	if /i "%~1"=="/r"         goto :R
+	if /i "%~1"=="-r"         goto :R
+	
+	if /i "%~1"=="/s"         goto :S
+	if /i "%~1"=="-s"         goto :S 
+	
+	if /i "%~1"=="/t"         goto :T
+	if /i "%~1"=="-t"         goto :T
+	
+	if /i "%~1"=="/u"         goto :U
+	if /i "%~1"=="-u"         goto :U
+
+	if /i "%~1"=="/v"         goto :V
+	if /i "%~1"=="-v"         goto :V 
+	
+	if /i "%~1"=="/w"         goto :W
+	if /i "%~1"=="-w"         goto :W 
+	
+	if /i "%~1"=="/x"         goto :X
+	if /i "%~1"=="-x"         goto :X
+	
+	if /i "%~1"=="/y"         goto :Y
+	if /i "%~1"=="-y"         goto :Y
+	
+	if /i "%~1"=="/z"         goto :Z
+	if /i "%~1"=="-z"         goto :Z
+	
+	
+	if /i "%~1"=="/com"      goto :com
+	if /i "%~1"=="/COM"      goto :com
+
+    if not defined UnNamedArgument     set "UnNamedArgument=%~1"     & shift & goto :parse
+    if not defined UnNamedOptionalArg  set "UnNamedOptionalArg=%~1"  & shift & goto :parse
+
+    shift
+    goto :parse
+
+:usage
+	ECHO USAGE:
+	ECHO.
+	ECHO    CMDGloss [flags] "required argument" "optional argument"
+	ECHO    The Command Prompt Glossary is an exhaustive list of all possible commands.
+	ECHO.
+	ECHO.
+	ECHO.   /?, --help       shows this help.
+	ECHO.   /a-z             shows only commands starting with the target letter.
+    ECHO.   /com             shows only the commands available for COMMAND.COM.
+	ECHO.	
+	GOTO :eof 
+	
+:validate
+    if not defined UnNamedArgument call :missing_argument & goto :end
+	
+:default 
+	ECHO ARP            Displays and modifies the IP-to-Physical address translation tables used by 
+	ECHO                Address Resolution Protocol.
+	ECHO ASSOC          Displays or modifies file extension associations.
+	ECHO ATTRIB         Displays or changes file attributes.
+	ECHO AUDITPOL       Displays information about and performs functions to manipulate 
+	ECHO                audit policies.
+	ECHO BCDBOOT        Create or Repair System Partitions.
+	ECHO BCDEDIT        Sets properties in boot database to control boot loading.
+	ECHO BITSADMIN      Activates the Background Intelligent Transfer Service.
+	ECHO BOOTCFG        Configure, Query, Change or Delete the boot entry settings in the BOOT.INI 
+	ECHO                file.
+	ECHO BREAK          Sets or clears extended CTRL+C checking.
+	ECHO CACLS          Displays or modifies access control lists (ACLs) of files.
+	ECHO CALC           Starts the Calculator application.
+	ECHO CALL           Calls one batch program from another.
+	ECHO CD             Displays the name of or changes the current directory.
+	ECHO CERTREQ        Request certificates from a Certification Authority.
+	ECHO CERTUTIL       Activate the Certificate Utility Service.
+	ECHO CHANGEPK       Allows upgrading the current Windows Edition.
+	ECHO CHCP           Displays or sets the active code page number.
+	ECHO CHDIR          Displays the name of or changes the current directory.
+	ECHO CHKDSK         Checks a disk and displays a status report.
+	ECHO CHKNTFS        Displays or modifies the checking of disk at boot time.
+	ECHO CHOICE         Accepts Keyboard Input to a Batch File.
+	ECHO CIPHER         Displays or alters the encryption of directories [files] on NTFS partitions.
+	ECHO CLEANMGR       Clears unnecessary files from your computer's hard disk.
+	ECHO CLIP           Redirects output of command line tools to the Windows clipboard.
+	ECHO CLS            Clears the screen.
+	ECHO CMD            Starts a new instance of the Windows command interpreter.
+	ECHO CMDKEY         Creates, displays, and deletes stored user names and passwords.
+	ECHO CMSTP          Installs or removes a Connection Manager service profile.
+	ECHO COLOR          Sets the default console foreground and background colors.
+	ECHO COMP           Compares the contents of two files or sets of files.
+	ECHO COMPACT        Displays or alters the compression of files on NTFS partitions.
+	ECHO CONTROL        Starts the Control Panel application.
+	ECHO CONVERT        Converts FAT volumes to NTFS. You cannot conver the 
+	ECHO                current drive.
+	ECHO COPY           Copies one or more files to another location.
+	ECHO CSCRIPT        Starts a script to run in a command-line environment.
+	ECHO DATE           Displays or sets the date.
+	ECHO DEFRAG         Locates and consolidates fragmented files on local volumes to improve system
+	ECHO                performance.
+	ECHO DEL            Deletes one or more files.
+	ECHO DIR            Displays a list of files and subdirectories in a directory.
+	ECHO DISKPART       Displays or configures Disk Partition properties.
+	ECHO DISKPERF       Enables or disables physical or logical disk performance counters.
+	ECHO DISKRAID       Configure and manage RAID storage subsystems.
+	ECHO DISPDIAG       Logs display information to a file in the current directory.
+	ECHO DOSKEY         Edits command lines, recalls Windows commands, and 
+	ECHO                creates macros.
+	ECHO DRIVERQUERY    Displays current device driver status and properties. 
+	ECHO ECHO           Displays messages, or turns command echoing on or off.
+	ECHO ENDLOCAL       Ends localization of environment changes in a batch file.
+	ECHO ERASE          Deletes one or more files.
+	ECHO EVENTCREATE    Enables an admin to create a custom event ID and Message in a specified 
+	ECHO                event log.
+	ECHO EXIT           Quits the CMD.EXE program (command interpreter).
+	ECHO EXPAND         Expands one or more compressed files.
+	ECHO EXPLORER       Opens the Windows Explorer application.
+	ECHO FC             Compares two files or sets of files, and displays the 
+	ECHO                differences between them.
+	ECHO FIND           Searches for a text string in a file or files.
+	ECHO FINDSTR        Searches for strings in files.
+	ECHO FINGER         Display information on users on systems running the Finger service.
+	ECHO FONDUE         Enables Windows optional features by downloading required files
+	ECHO                from Windows Update.
+	ECHO FOR            Runs a specific command for each file in a set of files.
+	ECHO FORFILES       Selects and runs a command on a file or set of files.
+	ECHO FORMAT         Formats a disk for use with Windows.
+	ECHO FSUTIL         Displays or configures the file system properties.
+	ECHO FTP            Transfer files to and from a computer running an FTP server service.
+	ECHO FTYPE          Displays or modifies file types used in file extension 
+	ECHO                associations.
+	ECHO GOTO           Directs the Windows command interpreter to a labeled line in 
+	ECHO                a batch program.
+	ECHO GETMAC         Displays the MAC Address for Network Adapters on a system.
+	ECHO GPRESULT       Displays Group Policy information for machine or user.
+	ECHO GPUPDATE       Updates multiple Group Policy settings.
+	ECHO GRAFTABL       Enables Windows to display an extended character set in 
+	ECHO                graphics mode.
+	ECHO HELP           Provides Help information for Windows commands.
+	ECHO HOSTNAME       Prints the name of the current host.
+	ECHO ICACLS         Display, modify, backup, or restore ACLs for files and 
+	ECHO                directories.
+	ECHO IF             Performs conditional processing in batch programs.
+	ECHO IPCONFIG       Allows you to display and configure IP.
+	ECHO KLIST          Displays a list of currently cached Kerberos tickets.
+	ECHO KSETUP         Perform tasks related to setting up and maintaining Kerberos protocol.
+	ECHO KTMUTIL        Starts the Kernel Transaction Manager utility.
+	ECHO LABEL          Creates, changes, or deletes the volume label of a disk.
+	ECHO LODCTR         Updates registry values related to performance counters.
+	ECHO LOGMAN         Creates and manages Event Trace Session and Performance logs.
+	ECHO MAKECAB        Package existing files into a cabinet (.cab) file.
+	ECHO MD             Creates a directory.
+	ECHO MKDIR          Creates a directory.
+	ECHO MKLINK         Creates Symbolic Links and Hard Links.
+	ECHO MMC            Startes the Microsoft Management Console application.
+	ECHO MODE           Configures a system device.
+	ECHO MORE           Displays output one screen at a time.
+	ECHO MOUNTVOL       Creates, deletes, or lists a volume mount point.
+	ECHO MOVE           Moves one or more files from one directory to another 
+	ECHO                directory.
+	ECHO MSDT           Invokes a troubleshooting pack at the command line.
+	ECHO MSIEXEC        Provide the means to install, modify, and perform operations on 
+	ECHO                Windows Installer from the command line.
+	ECHO MSINFO32       Displays information about the system in the System Information application.
+	ECHO MSTSC          Create connections to Remote Desktop Session Host servers, and more options.
+	ECHO NBTSTAT        Display protocol statistics and current TCP/IP connections 
+	ECHO                using NBT (NetBIOS over TCP/IP).
+	ECHO NETCFG         Installs the Windows Preinstallation Environment (WinPE).
+	ECHO NETSH          Allows you to display or modify the network configuration of a local or 
+	ECHO                remote computer.
+	ECHO NETSTAT        Displays protocol statistics and current TCP/IP network connections.
+	ECHO NSLOOKUP       Displays information used to diagnose DNS infrastructure.
+	ECHO OPENFILES      Displays files opened by remote users for a file share.
+	ECHO PATH           Displays or sets a search path for executable files.
+	ECHO PATHPING       Displays information about network latency and network loss 
+	ECHO                at intermediate hops between a source and destination.
+	ECHO PAUSE          Suspends processing of a batch file and displays a message.
+	ECHO PERFMON        Starts the Performance Monitor application.
+	ECHO PING           Test a Network Connection.
+	ECHO PKTMON         Advanced packet capture and event collection.
+	ECHO PNPUNATTEND    Performs unattended driver installations.
+	ECHO PNPUTIL        Manage the drivers of Plug and Play Devices.
+	ECHO POPD           Restores the previous value of the current directory saved by 
+	ECHO                PUSHD.
+	ECHO POWERCFG       Enables users to control power settings on a local system.
+	ECHO POWERSHELL     Starts PowerShell in the Command Prompt.
+	ECHO POWERSHELL ISE Starts the PowerShell Integrated Scripting Environment application.
+	ECHO PRINT          Prints a text file.
+	ECHO PROMPT         Changes the Windows command prompt.
+	ECHO PUSHD          Saves the current directory then changes it.
+	ECHO PWLAUNCHER     Enables or Disables the Windows To Go Startup Options.
+	ECHO RD             Removes a directory.
+	ECHO RECOVER        Recovers readable information from a bad or defective disk.
+	ECHO REFSUTIL       Diagnose heavily damaged ReFS volumes.
+	ECHO REG            Performs operations on registry subkey information and values in registry entries.
+	ECHO REGINI         Modifies the registry from the command line or a script, 
+	ECHO                as well as create, modify and delete registry keys.
+	ECHO REGSVR32       Registers .dll files as command components in the registry.
+	ECHO RELOG          Extracts performance counters from performance counter logs into other formats.
+	ECHO REM            Records comments (remarks) in batch files or CONFIG.SYS.
+	ECHO REN            Renames a file or files.
+	ECHO RENAME         Renames a file or files.
+	ECHO REPLACE        Replaces files.
+	ECHO RMDIR          Removes a directory.
+	ECHO ROBOCOPY       Advanced utility to copy files and directory trees.
+	ECHO ROUTE          Displays and modifies the entries in the local IP routing table.
+	ECHO RPCPING        Pings a server using RPC.
+	ECHO SC             Displays or configures services (background processes).
+	ECHO SCHTASKS       Schedules commands or programs to run on a computer.
+	ECHO SET            Displays, sets, or removes Windows environment variables.
+	ECHO SETX           Creates or modifies environment variables in the user or system environment.
+	ECHO SETLOCAL       Begins localization of environment changes in a batch file.
+	ECHO SECEDIT        Configures and analyzes system security.
+	ECHO SFC            Scans the integrity of all protected system files and replaces 
+	ECHO                incorrect versions with correct Microsoft versions.
+	ECHO SHIFT          Shifts the position of replaceable parameters in batch files.
+	ECHO SHUTDOWN       Allows proper local or remote shutdown of machine.
+	ECHO SORT           Sorts input.
+	ECHO START          Starts a separate window to run a specified program or command.
+	ECHO SUBST          Associates a path with a drive letter.
+	ECHO SXSTRACE       Diagnoses side-by-side problems.
+	ECHO SYSTEMINFO     Displays machine specific properties and configuration.
+	ECHO TAKEOWN        Allows an admin to recover access to a file that was previously was denied.
+	ECHO TASKKILL       Kill or stop a running process or application.
+	ECHO TASKLIST       Displays all currently running tasks including services.
+	ECHO TASKMGR        Starts the Task Manager application.
+	ECHO TCMSETUP       Sets up or disables the TAPI (Telephony Application Programming Interface) client.
+	ECHO TIME           Displays or sets the system time.
+	ECHO TIMEOUT        Pauses the command processor for the specified number of seconds.
+	ECHO TITLE          Sets the windows title for a CMD.EXE session.
+	ECHO TPMTOOL        Get information about the Trusted Platform Module (TPM).
+	ECHO TPMVSMGR       Create and delete TPM virtual smart cards on a computer.
+	ECHO TREE           Graphically displays the directory structure of a drive or 
+	ECHO                path.
+	ECHO TRACERPT       Parse Event Trace Logs generated by Performance Monitor.
+	ECHO TRACERT        Locate the IP address of a remote host.
+	ECHO TYPE           Displays the contents of a text file.
+	ECHO TYPEPERF       Writes performance data to the command window or to a log file.
+	ECHO TZUTIL         Activates the Windows Time Zone Utility.
+	ECHO UNLODCTR       Uninstalls a Performance Counter Provider.
+	ECHO VER            Displays the Windows version.
+	ECHO VERIFIER       Starts the Driver Verifier application.
+	ECHO VERIFY         Tells Windows whether to verify that your files are written 
+	ECHO                correctly to a disk.
+	ECHO VOL            Displays a disk volume label and serial number.
+	ECHO VSSADMIN       Displays current volume shadow copy backups and all installed shadow copy 
+	ECHO                writers and providers.
+	ECHO VULKANINFO     Summarize Vulkan information in relation to the current environment.
+	ECHO WAITFOR        Sends or waits for a signal on a system.
+	ECHO WBADMIN        Enables you to backup and restore your operating system, volumes, files, 
+	ECHO                folders, and applications from the command prompt.
+	ECHO WECUTIL        Enables you to create and manage subscriptions to events that are forwarded 
+	ECHO                from remote computers.
+	ECHO WEVTUTIL       Enables you to retrieve information about event logs and publishers.
+	ECHO WHERE          Displays the location of files.
+	ECHO WHOAMI         Displays user name and group information, and other information.
+	ECHO WINRS          Allows you to manage and execute programs remotely.
+	ECHO WMIC           Displays WMI information inside interactive command shell.
+	ECHO WT             Starts the Windows Terminal application (if downloaded).
+	ECHO XCOPY          Copies files and directory trees. 
+	GOTO :end 
+	
+:end
+    exit /B
+	
+REM Below is a list of all alphabetical parameters; only one parameter can be used at a time.
+
+:A
+	ECHO ARP            Displays and modifies the IP-to-Physical address translation tables used by 
+	ECHO                Address Resolution Protocol.
+	ECHO ASSOC          Displays or modifies file extension associations.
+	ECHO ATTRIB         Displays or changes file attributes.
+	ECHO AUDITPOL       Displays information about and performs functions to manipulate 
+	ECHO                audit policies.
+	GOTO :eof
+	
+:B 
+	ECHO BCDBOOT        Create or Repair System Partitions.
+    ECHO BCDEDIT        Sets properties in boot database to control boot loading.
+    ECHO BITSADMIN      Activates the Background Intelligent Transfer Service.
+    ECHO BOOTCFG        Configure, Query, Change or Delete the boot entry settings in the BOOT.INI 
+    ECHO                file.
+    ECHO BREAK          Sets or clears extended CTRL+C checking.
+	GOTO :eof
+	
+:C 
+	ECHO CACLS          Displays or modifies access control lists (ACLs) of files.
+	ECHO CALC           Starts the Calculator application.
+	ECHO CALL           Calls one batch program from another.
+	ECHO CD             Displays the name of or changes the current directory.
+	ECHO CERTREQ        Request certificates from a Certification Authority.
+	ECHO CERTUTIL       Activate the Certificate Utility Service.
+	ECHO CHANGEPK       Allows upgrading the current Windows Edition.
+	ECHO CHCP           Displays or sets the active code page number.
+	ECHO CHDIR          Displays the name of or changes the current directory.
+	ECHO CHKDSK         Checks a disk and displays a status report.
+	ECHO CHKNTFS        Displays or modifies the checking of disk at boot time.
+	ECHO CHOICE         Accepts Keyboard Input to a Batch File.
+	ECHO CIPHER         Displays or alters the encryption of directories [files] on NTFS partitions.
+	ECHO CLEANMGR       Clears unnecessary files from your computer's hard disk.
+	ECHO CLIP           Redirects output of command line tools to the Windows clipboard.
+	ECHO CLS            Clears the screen.
+	ECHO CMD            Starts a new instance of the Windows command interpreter.
+	ECHO CMDKEY         Creates, displays, and deletes stored user names and passwords.
+	ECHO CMSTP          Installs or removes a Connection Manager service profile.
+	ECHO COLOR          Sets the default console foreground and background colors.
+	ECHO COMP           Compares the contents of two files or sets of files.
+	ECHO COMPACT        Displays or alters the compression of files on NTFS partitions.
+	ECHO CONTROL        Starts the Control Panel application.
+	ECHO CONVERT        Converts FAT volumes to NTFS. You cannot conver the 
+	ECHO                current drive.
+	ECHO COPY           Copies one or more files to another location.
+	ECHO CSCRIPT        Starts a script to run in a command-line environment.
+	GOTO :eof 
+	
+:D
+	ECHO DATE           Displays or sets the date.
+	ECHO DEFRAG         Locates and consolidates fragmented files on local volumes to improve system
+	ECHO                performance.
+	ECHO DEL            Deletes one or more files.
+	ECHO DIR            Displays a list of files and subdirectories in a directory.
+	ECHO DISKPART       Displays or configures Disk Partition properties.
+	ECHO DISKPERF       Enables or disables physical or logical disk performance counters.
+	ECHO DISKRAID       Configure and manage RAID storage subsystems.
+	ECHO DISPDIAG       Logs display information to a file in the current directory.
+	ECHO DOSKEY         Edits command lines, recalls Windows commands, and 
+	ECHO                creates macros.
+	ECHO DRIVERQUERY    Displays current device driver status and properties. 
+	GOTO :eof 
+	
+:E 
+	ECHO ECHO           Displays messages, or turns command echoing on or off.
+	ECHO ENDLOCAL       Ends localization of environment changes in a batch file.
+	ECHO ERASE          Deletes one or more files.
+	ECHO EVENTCREATE    Enables an admin to create a custom event ID and Message in a specified 
+	ECHO                event log.
+	ECHO EXIT           Quits the CMD.EXE program (command interpreter).
+	ECHO EXPAND         Expands one or more compressed files.
+	ECHO EXPLORER       Opens the Windows Explorer application.
+	GOTO :eof 
+	
+:F 
+	ECHO FC             Compares two files or sets of files, and displays the 
+	ECHO                differences between them.
+	ECHO FIND           Searches for a text string in a file or files.
+	ECHO FINDSTR        Searches for strings in files.
+	ECHO FINGER         Display information on users on systems running the Finger service.
+	ECHO FONDUE         Enables Windows optional features by downloading required files
+	ECHO                from Windows Update.
+	ECHO FOR            Runs a specific command for each file in a set of files.
+	ECHO FORFILES       Selects and runs a command on a file or set of files.
+	ECHO FORMAT         Formats a disk for use with Windows.
+	ECHO FSUTIL         Displays or configures the file system properties.
+	ECHO FTP            Transfer files to and from a computer running an FTP server service.
+	ECHO FTYPE          Displays or modifies file types used in file extension 
+	ECHO                associations.
+	GOTO :eof 
+	
+:G 
+	ECHO GOTO           Directs the Windows command interpreter to a labeled line in 
+	ECHO                a batch program.
+	ECHO GETMAC         Displays the MAC Address for Network Adapters on a system.
+	ECHO GPRESULT       Displays Group Policy information for machine or user.
+	ECHO GPUPDATE       Updates multiple Group Policy settings.
+	ECHO GRAFTABL       Enables Windows to display an extended character set in 
+	ECHO                graphics mode.
+	GOTO :eof 
+	
+:H 
+	ECHO HELP           Provides Help information for Windows commands.
+	ECHO HOSTNAME       Prints the name of the current host.
+	GOTO :eof 
+	
+:I 
+	ECHO ICACLS         Display, modify, backup, or restore ACLs for files and 
+	ECHO                directories.
+	ECHO IF             Performs conditional processing in batch programs.
+	ECHO IPCONFIG       Allows you to display and configure IP.
+	GOTO :eof 
+	
+:J
+	ECHO There are no recognized commands that start with "J".
+	GOTO :eof 
+	
+:K  
+	ECHO KLIST          Displays a list of currently cached Kerberos tickets.
+	ECHO KSETUP         Perform tasks related to setting up and maintaining Kerberos protocol.
+	ECHO KTMUTIL        Starts the Kernel Transaction Manager utility.
+	GOTO :eof 
+	
+:L 
+	ECHO LABEL          Creates, changes, or deletes the volume label of a disk.
+	ECHO LODCTR         Updates registry values related to performance counters.
+	ECHO LOGMAN         Creates and manages Event Trace Session and Performance logs.
+	GOTO :eof 
+	
+:M
+	ECHO MAKECAB        Package existing files into a cabinet (.cab) file.
+	ECHO MD             Creates a directory.
+	ECHO MKDIR          Creates a directory.
+	ECHO MKLINK         Creates Symbolic Links and Hard Links.
+	ECHO MMC            Startes the Microsoft Management Console application.
+	ECHO MODE           Configures a system device.
+	ECHO MORE           Displays output one screen at a time.
+	ECHO MOUNTVOL       Creates, deletes, or lists a volume mount point.
+	ECHO MOVE           Moves one or more files from one directory to another 
+	ECHO                directory.
+	ECHO MSDT           Invokes a troubleshooting pack at the command line.
+	ECHO MSIEXEC        Provide the means to install, modify, and perform operations on 
+	ECHO                Windows Installer from the command line.
+	ECHO MSINFO32       Displays information about the system in the System Information application.
+	ECHO MSTSC          Create connections to Remote Desktop Session Host servers, and more options.
+	GOTO :eof 
+	
+:N 
+	ECHO NBTSTAT        Display protocol statistics and current TCP/IP connections 
+	ECHO                using NBT (NetBIOS over TCP/IP).
+	ECHO NETCFG         Installs the Windows Preinstallation Environment (WinPE).
+	ECHO NETSH          Allows you to display or modify the network configuration of a local or 
+	ECHO                remote computer.
+	ECHO NETSTAT        Displays protocol statistics and current TCP/IP network connections.
+	ECHO NSLOOKUP       Displays information used to diagnose DNS infrastructure.
+	GOTO :eof 
+	
+:O
+	ECHO OPENFILES      Displays files opened by remote users for a file share.
+	GOTO :eof 
+	
+:P 
+	ECHO PATH           Displays or sets a search path for executable files.
+	ECHO PATHPING       Displays information about network latency and network loss 
+	ECHO                at intermediate hops between a source and destination.
+	ECHO PAUSE          Suspends processing of a batch file and displays a message.
+	ECHO PERFMON        Starts the Performance Monitor application.
+	ECHO PING           Test a Network Connection.
+	ECHO PKTMON         Advanced packet capture and event collection.
+	ECHO PNPUNATTEND    Performs unattended driver installations.
+	ECHO PNPUTIL        Manage the drivers of Plug and Play Devices.
+	ECHO POPD           Restores the previous value of the current directory saved by 
+	ECHO                PUSHD.
+	ECHO POWERCFG       Enables users to control power settings on a local system.
+	ECHO POWERSHELL     Starts PowerShell in the Command Prompt.
+	ECHO POWERSHELL ISE Starts the PowerShell Integrated Scripting Environment application.
+	ECHO PRINT          Prints a text file.
+	ECHO PROMPT         Changes the Windows command prompt.
+	ECHO PUSHD          Saves the current directory then changes it.
+	ECHO PWLAUNCHER     Enables or Disables the Windows To Go Startup Options.
+	GOTO :eof 
+	
+:Q
+	ECHO There are no recognized commands that start with "Q".
+	GOTO :eof 
+	
+:R 
+	ECHO RD             Removes a directory.
+	ECHO RECOVER        Recovers readable information from a bad or defective disk.
+	ECHO REFSUTIL       Diagnose heavily damaged ReFS volumes.
+	ECHO REG            Performs operations on registry subkey information and values in registry entries.
+	ECHO REGINI         Modifies the registry from the command line or a script, 
+	ECHO                as well as create, modify and delete registry keys.
+	ECHO REGSVR32       Registers .dll files as command components in the registry.
+	ECHO RELOG          Extracts performance counters from performance counter logs into other formats.
+	ECHO REM            Records comments (remarks) in batch files or CONFIG.SYS.
+	ECHO REN            Renames a file or files.
+	ECHO RENAME         Renames a file or files.
+	ECHO REPLACE        Replaces files.
+	ECHO RMDIR          Removes a directory.
+	ECHO ROBOCOPY       Advanced utility to copy files and directory trees.
+	ECHO ROUTE          Displays and modifies the entries in the local IP routing table.
+	ECHO RPCPING        Pings a server using RPC.
+	GOTO :eof 
+	
+:S 
+	ECHO SC             Displays or configures services (background processes).
+	ECHO SCHTASKS       Schedules commands or programs to run on a computer.
+	ECHO SET            Displays, sets, or removes Windows environment variables.
+	ECHO SETX           Creates or modifies environment variables in the user or system environment.
+	ECHO SETLOCAL       Begins localization of environment changes in a batch file.
+	ECHO SECEDIT        Configures and analyzes system security.
+	ECHO SFC            Scans the integrity of all protected system files and replaces 
+	ECHO                incorrect versions with correct Microsoft versions.
+	ECHO SHIFT          Shifts the position of replaceable parameters in batch files.
+	ECHO SHUTDOWN       Allows proper local or remote shutdown of machine.
+	ECHO SORT           Sorts input.
+	ECHO START          Starts a separate window to run a specified program or command.
+	ECHO SUBST          Associates a path with a drive letter.
+	ECHO SXSTRACE       Diagnoses side-by-side problems.
+	ECHO SYSTEMINFO     Displays machine specific properties and configuration.
+	GOTO :eof 
+	
+:T 
+	ECHO TAKEOWN        Allows an admin to recover access to a file that was previously was denied.
+	ECHO TASKKILL       Kill or stop a running process or application.
+	ECHO TASKLIST       Displays all currently running tasks including services.
+	ECHO TASKMGR        Starts the Task Manager application.
+	ECHO TCMSETUP       Sets up or disables the TAPI (Telephony Application Programming Interface) client.
+	ECHO TIME           Displays or sets the system time.
+	ECHO TIMEOUT        Pauses the command processor for the specified number of seconds.
+	ECHO TITLE          Sets the windows title for a CMD.EXE session.
+	ECHO TPMTOOL        Get information about the Trusted Platform Module (TPM).
+	ECHO TPMVSMGR       Create and delete TPM virtual smart cards on a computer.
+	ECHO TREE           Graphically displays the directory structure of a drive or 
+	ECHO                path.
+	ECHO TRACERPT       Parse Event Trace Logs generated by Performance Monitor.
+	ECHO TRACERT        Locate the IP address of a remote host.
+	ECHO TYPE           Displays the contents of a text file.
+	ECHO TYPEPERF       Writes performance data to the command window or to a log file.
+	ECHO TZUTIL         Activates the Windows Time Zone Utility.
+	GOTO :eof
+
+:U 
+	ECHO UNLODCTR       Uninstalls a Performance Counter Provider.
+	GOTO :eof 
+	
+:V 
+	ECHO VER            Displays the Windows version.
+	ECHO VERIFIER       Starts the Driver Verifier application.
+	ECHO VERIFY         Tells Windows whether to verify that your files are written 
+	ECHO                correctly to a disk.
+	ECHO VOL            Displays a disk volume label and serial number.
+	ECHO VSSADMIN       Displays current volume shadow copy backups and all installed shadow copy 
+	ECHO                writers and providers.
+	ECHO VULKANINFO     Summarize Vulkan information in relation to the current environment.
+	GOTO :eof 
+	
+:W 
+	ECHO WAITFOR        Sends or waits for a signal on a system.
+	ECHO WBADMIN        Enables you to backup and restore your operating system, volumes, files, 
+	ECHO                folders, and applications from the command prompt.
+	ECHO WECUTIL        Enables you to create and manage subscriptions to events that are forwarded 
+	ECHO                from remote computers.
+	ECHO WEVTUTIL       Enables you to retrieve information about event logs and publishers.
+	ECHO WHERE          Displays the location of files.
+	ECHO WHOAMI         Displays user name and group information, and other information.
+	ECHO WINRS          Allows you to manage and execute programs remotely.
+	ECHO WMIC           Displays WMI information inside interactive command shell.
+	ECHO WT             Starts the Windows Terminal application (if downloaded).
+	GOTO :eof 
+
+:X	
+	ECHO XCOPY          Copies files and directory trees. 
+	GOTO :eof 
+	
+:Y 
+	ECHO There are no recognized commands that start with "Y".
+	GOTO :eof
+	
+:Z 
+	ECHO There are no recognized commands that start with "Z".
+	GOTO :eof 
+	
+:com
+	ECHO These are commands that were available for COMMAND.COM,
+	ECHO The CLI for MS-DOS, Windows 95, 98, 98SE and ME.
+	REM  Commands added below are from Win95 unless specified otherwise.
+	ECHO.
+	ECHO APPEND   Allows programs to open data files in specified directories as if
+	ECHO          they were in the current directory.
+	ECHO ASSIGN   Redirects requests for disk operations on one drive to a different
+	ECHO          drive.
+	ECHO BACKUP   Backs up one or more files from one disk to another.
+	ECHO BREAK    Sets or clears extended CTRL+C checking.
+	ECHO CALL     Calls one batch program from another.
+	ECHO CD       Displays the same of or changes the current directory.
+	ECHO CHCP     Displays or sets the active code page number.
+	ECHO CHDIR    Displays the name of or changes the current directory.
+	ECHO CHKDSK   Checks a disk and displays a status report.
+	ECHO CLS      Clears the screen.
+	ECHO COMMAND  Starts a new instance of the MS-DOS command interpreter.
+	ECHO COMP     Compares the contents of two files or sets of files.
+	ECHO COPY     Copies one or more files to another location.
+	ECHO CTTY     Changes the terminal device used to control your system.
+	ECHO DATE     Displays or sets the date.
+	ECHO DEBUG    Runs Debug, a program testing and editing tool.
+	ECHO DEL      Deletes one or more files.
+	ECHO DIR      Displays a list of files and subdirectories in a directory.
+	ECHO DISKCOMP Compares the contents of two floppy disks.
+	ECHO DISKCOPY Copies the contents of one floppy disk to another.
+	ECHO DOSKEY   Edits command lines, recalls MS-DOS commands, and creates macros.
+	ECHO DOSSHELL Starts MS-DOS Shell.
+	ECHO ECHO     Displays messages, or turns command echoing on or off.
+	ECHO EDIT     Starts MS-DOS Editor, which creates and changes ASCII files.
+	ECHO EDLIN    Starts Edlin, a line-oriented text editor.
+	ECHO EMM386   Turns on or off EMM386 expanded memory support.
+	ECHO ERASE    Deletes one or more files.
+	ECHO EXE2BIN  Converts .EXE (executable) files to binary format.
+	ECHO EXIT     Quits the COMMAND.COM program (command interpreter).
+	ECHO EXPAND   Expands one or more compressed files.
+	ECHO FASTOPEN Decreases the amount of time needed to open frequently used files 
+	ECHO          and directories.
+	ECHO FC       Compares two files or sets of files, and displays the differences
+	ECHO          between them.
+	ECHO FDISK    Configures a hard disk for use with MS-DOS.
+	ECHO FIND     Searches for a text string in a file or files.
+	ECHO FOR      Runs a specified command for each files in a set of files.
+	ECHO FORMAT   Formats a disk for use with MS-DOS.
+	ECHO GOTO     Directs MS-DOS to a labelled line in a batch program.
+	ECHO GRAFTABL Enables MS-DOS to display an extended character set in graphics mode.
+	ECHO GRAPHICS Loads a program that can print graphics.
+	ECHO HELP     Provides Help information for MS-DOS commands.
+	ECHO IF       Performs conditional processing in batch programs.
+	ECHO JOIN     Joins a disk drive to a directory on another drive.
+	ECHO KEYB     Configures a keyboard for a specific language.
+	ECHO LABEL    Creates, changes, or deletes the volume label of a disk.
+	ECHO LH       Loads a program into the upper memory area.
+	ECHO LOADFIX  Loads a program above the first 64K of memory, and runs the program.
+	ECHO LOADHIGH Loads a program into the upper memory area.
+	ECHO MD       Creates a directory.
+	ECHO MEM      Displays the amount of used and free memory in your system.
+	ECHO MIRROR   Records information about one or more disks.
+	ECHO MKDIR    Creates a directory.
+	ECHO MODE     Configures a system device.
+	ECHO MORE     Displays output one screen at a time.
+	ECHO NLSFUNC  Loads country-specific information.
+	ECHO PATH     Displays or sets a search path for executable files.
+	ECHO PAUSE    Suspends processing of a batch file and displays a message.
+	ECHO PRINT    Prints a text file while you are using other MS-DOS commands.
+	ECHO PROMPT   Changes the MS-DOS command prompt.
+	ECHO QBASIC   Starts the MS-DOS QBasic programming environment.
+	ECHO RD       Removes a directory.
+	ECHO RECOVER  Recovers readable information from a bad or defective disk.
+	ECHO REM      Records comments (remarks) in batch files or CONFIG.SYS.
+	ECHO REN      Renames a file or files.
+	ECHO RENAME   Renames a file or files.
+	ECHO REPLACE  Replaces files.
+	ECHO RESTORE  Restores files that were backed up by using the BACKUP command.
+	ECHO RMDIR    Removes a directory.
+	ECHO SET      Displays, sets, or removes MS-DOS environment variables.
+	ECHO SETVER   Sets the version number that MS-DOS reports to a program.
+	ECHO SHARE    Installs file-sharing and locking capabilities on your hard disk.
+	ECHO SHIFT    Shifts the position of replaceable parameters in batch files.
+	ECHO SORT     Sorts input.
+	ECHO SUBST    Associates a path with a drive letter.
+	ECHO SYS      Copies MS-DOS system files and command interpreter to a disk you
+	ECHO          specify.
+	ECHO TIME     Displays or sets the system time.
+	ECHO TREE     Graphically displays the directory structure of a drive or path.
+	ECHO TYPE     Displays the contents of a text file.
+	ECHO UNDELETE Recovers files which have been deleted.
+	ECHO UNFORMAT Restores a disk erased by the FORMAT command or restructured by the 
+	ECHO          RECOVER command.
+	ECHO VER      Displays the MS-DOS version.
+	ECHO VERIFY   Tells MS-DOS whether to verify that your files are written correctly 
+	ECHO          to a disk.
+	ECHO VOL      Displays a disk volume label and serial number.
+	ECHO XCOPY    Copies files (except hidden and system files) and directory trees.
+	ECHO
+	GOTO :eof
